@@ -14,6 +14,3 @@ services:
       DB_HOST: host.docker.internal
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    volumes:
-      - ./storage:/var/www/html/storage
-      - ./bootstrap/cache:/var/www/html/bootstrap/cache
