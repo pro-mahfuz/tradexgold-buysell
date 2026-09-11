@@ -36,24 +36,30 @@ COPY . .
 COPY --from=assets /app/public/build ./public/build
 
 
-RUN mkdir -p \ 
-    storage/framework/cache \ 
-    storage/framework/sessions \ 
-    storage/framework/views \ 
-    storage/logs \ 
-    bootstrap/cache \ 
-    && chown -R www-data:www-data \ 
-    storage \ 
-    bootstrap/cache \ 
-    && chmod -R 775 \ 
-    storage \ 
-    bootstrap/cache
-
-RUN composer dump-autoload --no-dev --optimize \
+# Laravel runtime directories + permissions
+RUN mkdir -p \
+        storage/framework/cache \
+        storage/framework/sessions \
+        storage/framework/views \
+        storage/logs \
+        bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache \
-    && sed -ri 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+    && chmod -R 775 storage bootstrap/cache
 
+# Optimize Composer autoloader
+RUN composer dump-autoload \
+    --no-dev \
+    --optimize
+
+# Laravel public directory
+RUN sed -ri \
+    's!/var/www/html!/var/www/html/public!g' \
+    /etc/apache2/sites-available/000-default.conf
+
+# Make application accessible by Apache
 RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 775 \ storage \ bootstrap/cache
+
+# Ensure Laravel writable directories remain writable
+RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 80
