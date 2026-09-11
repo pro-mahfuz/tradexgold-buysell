@@ -35,8 +35,25 @@ RUN composer install --no-dev --no-interaction --prefer-dist --no-scripts
 COPY . .
 COPY --from=assets /app/public/build ./public/build
 
+
+RUN mkdir -p \ 
+    storage/framework/cache \ 
+    storage/framework/sessions \ 
+    storage/framework/views \ 
+    storage/logs \ 
+    bootstrap/cache \ 
+    && chown -R www-data:www-data \ 
+    storage \ 
+    bootstrap/cache \ 
+    && chmod -R 775 \ 
+    storage \ 
+    bootstrap/cache
+
 RUN composer dump-autoload --no-dev --optimize \
     && chown -R www-data:www-data storage bootstrap/cache \
     && sed -ri 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 775 \ storage \ bootstrap/cache
 
 EXPOSE 80
