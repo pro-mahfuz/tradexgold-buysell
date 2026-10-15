@@ -480,7 +480,7 @@
             var formData = {
                 tt_quantity: parseFloat(document.getElementById('bid_'+type).value),
                 current_rate: document.getElementById('gold_value_'+type).value,
-                total_amount_aed: (document.getElementById('gold_value_'+type).value * 3.745 * 3.67 * document.getElementById('bid_'+type).value).toFixed(3),
+                total_amount_aed: (document.getElementById('gold_value_'+type).value * 4 * 3.674 * document.getElementById('bid_'+type).value).toFixed(3),
                 close_quanntity: 0,
                 type: type,
                 cut_position: 0,
