@@ -26,11 +26,11 @@
                         <td>{{ $transaction['tt_quantity'] - $transaction['close_quanntity'] }}</td>
                         <td>{{ number_format($transaction['current_rate'], 3) }}</td>
                         <td id="oldbalance-{{ $sl }}">
-                            {{ number_format($transaction['current_rate'] * 3.74632 * 3.674 * ($transaction['tt_quantity'] - $transaction['close_quanntity']), 3) }}
+                            {{ number_format($transaction['current_rate'] * 4 * 3.674 * ($transaction['tt_quantity'] - $transaction['close_quanntity']), 3) }}
                         </td>
                         <td><span data-id="{{ $sl }}" data-type="{{ $transaction['type'] }}"
                                 data-qty="{{ $transaction['tt_quantity'] - $transaction['close_quanntity'] }}"
-                                data-startrate="{{ number_format($transaction['current_rate'] * 3.745 * 3.67 * ($transaction['tt_quantity'] - $transaction['close_quanntity']), 3) }}"
+                                data-startrate="{{ number_format($transaction['current_rate'] * 4 * 3.67 * ($transaction['tt_quantity'] - $transaction['close_quanntity']), 3) }}"
                                 class="ratelist">{{ number_format($transaction['current_rate'], 3) }}<span></td>
                         <td id="balance-{{ $sl }}">{{ number_format($transaction['current_rate'], 3) }}</td>
                         <td> <a href="#"
@@ -107,7 +107,7 @@
                 let dataId = $(this).attr("data-id");
                 let dataType = $(this).attr("data-type");
 
-                let runningValue = qty * buyPrice * 3.74632 * 3.674;
+                let runningValue = qty * buyPrice * 4 * 3.674;
 
                 $(this).html(runningValue.toFixed(3));
 

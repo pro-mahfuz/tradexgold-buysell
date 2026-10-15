@@ -40,7 +40,7 @@ class TransferPendingToBuysellCOPY extends Command
 
                 if ($cutomerName) {
                     if ($goldPrice >= $record->threshold_rate || $goldPrice <= $record->threshold_rate) {
-                        $total_amount_aed = ($goldPrice * 3.745 * 3.67 * $record->tt);
+                        $total_amount_aed = ($goldPrice * 4 * 3.67 * $record->tt);
                         $this->info(string: 'Total amount: ' . $total_amount_aed);
 
                         $this->info('Customer name: ' . $cutomerName->name);

@@ -86,7 +86,7 @@ class CustomerService
             $margin = 0;
         
             if ($active_ttb != 0) {
-                $margin_gap = ($equity / abs($active_ttb)) / 13.7639;
+                $margin_gap = ($equity / abs($active_ttb)) / 14.696;
                 $margin = abs($active_ttb > 0
                     ? $marketPrice - $margin_gap
                     : $margin_gap + $marketPrice);
@@ -120,7 +120,7 @@ class CustomerService
             $customer->equity = $equity;
             $customer->margin_gap = $margin_gap;
             $customer->margin = $margin;
-            $customer->sum_of_running_service_charge = $buySell->sum_of_running_service_charge * 13.7639;
+            $customer->sum_of_running_service_charge = $buySell->sum_of_running_service_charge * 14.696;
         
             return $customer;
         });

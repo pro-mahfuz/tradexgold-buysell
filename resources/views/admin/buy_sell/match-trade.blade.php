@@ -31,7 +31,7 @@
                                     @php
                                         $oldAmount =
                                             $transaction->current_rate *
-                                            3.74632 *
+                                            4 *
                                             3.674 *
                                             ($transaction->tt_quantity - $transaction->close_quanntity);
                                     @endphp
@@ -69,7 +69,7 @@
                                                 @php
                                                     $oldTradeAmount =
                                                         $trade->current_rate *
-                                                        3.74632 *
+                                                        4 *
                                                         3.674 *
                                                         ($trade->tt_quantity - $trade->close_quanntity);
                                                 @endphp

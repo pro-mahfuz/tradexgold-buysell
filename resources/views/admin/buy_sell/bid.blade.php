@@ -140,14 +140,14 @@
                                         <td style="text-align: center;" id="current_rate-{{ $sl }}">{{ number_format($transaction->current_rate, 3) }}</td>
                                         <td style="text-align: center;" id="oldbalance-{{ $sl }}" style="text-align: center;">
                                             {{ number_format(
-                                                ($transaction->current_rate * 13.7639 * ($transaction->tt_quantity - $transaction->close_quanntity))
-                                                + (($transaction->type === 'sell' ? -1 : 1) * ((($transaction->tt_quantity - $transaction->close_quanntity) * ($transaction->service_charge * 13.7639)) + ($transaction->swap_charge ?? 0))),
+                                                ($transaction->current_rate * 14.696 * ($transaction->tt_quantity - $transaction->close_quanntity))
+                                                + (($transaction->type === 'sell' ? -1 : 1) * ((($transaction->tt_quantity - $transaction->close_quanntity) * ($transaction->service_charge * 14.696)) + ($transaction->swap_charge ?? 0))),
                                                 3
                                             ) }}
                                         </td>
                                         
                                         <td id="service_charge-{{ $sl }}" style="text-align: center;">
-                                            {{ number_format(($transaction->tt_quantity - $transaction->close_quanntity) * ($transaction->service_charge * 13.7639), 3) }}</td>
+                                            {{ number_format(($transaction->tt_quantity - $transaction->close_quanntity) * ($transaction->service_charge * 14.696), 3) }}</td>
 
                                         <td style="text-align: center;">
                                             {{ number_format($transaction->swap_charge ?? 0, 3) }}
@@ -155,7 +155,7 @@
 
                                         
                                         <td style="text-align: center;">
-                                            <span data-id="{{ $sl }}" data-type="{{ $transaction->type }}" data-qty="{{ $transaction->tt_quantity - $transaction->close_quanntity }}" data-startrate="{{ number_format(($transaction->current_rate * 13.7639 * ($transaction->tt_quantity - $transaction->close_quanntity)) + (($transaction->type === 'sell' ? -1 : 1) * ((($transaction->tt_quantity - $transaction->close_quanntity) * ($transaction->service_charge * 13.7639)) + ($transaction->swap_charge ?? 0))), 3) }}" class="ratelist">
+                                            <span data-id="{{ $sl }}" data-type="{{ $transaction->type }}" data-qty="{{ $transaction->tt_quantity - $transaction->close_quanntity }}" data-startrate="{{ number_format(($transaction->current_rate * 14.696 * ($transaction->tt_quantity - $transaction->close_quanntity)) + (($transaction->type === 'sell' ? -1 : 1) * ((($transaction->tt_quantity - $transaction->close_quanntity) * ($transaction->service_charge * 14.696)) + ($transaction->swap_charge ?? 0))), 3) }}" class="ratelist">
                                             <span>
                                         </td>
 
@@ -414,7 +414,7 @@
                 let qty = $(this).attr("data-qty");
                 let dataId = $(this).attr("data-id");
                 let dataType = $(this).attr("data-type");
-                let perQtyPrice = qty * 13.7639;
+                let perQtyPrice = qty * 14.696;
 
                 // let runningValue = dataType == 'sell' ?   perQtyPrice * buyPrice : perQtyPrice * sellPrice;
                 let runningValue = perQtyPrice * price;
@@ -440,9 +440,9 @@
                 // try {
                 //     letPrfoitLoss = 0;
                 //     if (dataType == 'sell') {
-                //         letPrfoitLoss = ((current_rate - price) - (serviceCharge * 13.7639)) * perQtyPrice;
+                //         letPrfoitLoss = ((current_rate - price) - (serviceCharge * 14.696)) * perQtyPrice;
                 //     } else {
-                //         letPrfoitLoss = ((price - current_rate) - (serviceCharge * 13.7639)) * perQtyPrice;
+                //         letPrfoitLoss = ((price - current_rate) - (serviceCharge * 14.696)) * perQtyPrice;
                 //     }
 
                 //     let profit_lossDiv = document.getElementById("profit_loss-" + dataId);
@@ -882,7 +882,7 @@
                                                 <tbody>
                                                     <tr><td>Date</td><td>${formatDateTime(transactionData.created_at)}</td></tr>
                                                     <tr><td>Type</td><td>${transactionData.type}</td></tr>
-                                                    <tr><td>Amount</td><td>${(transactionData.current_rate * 13.7639 * (transactionData.tt_quantity - transactionData.close_quanntity)).toFixed(3)}</td></tr>
+                                                    <tr><td>Amount</td><td>${(transactionData.current_rate * 14.696 * (transactionData.tt_quantity - transactionData.close_quanntity)).toFixed(3)}</td></tr>
                                                     <tr><td>${transactionData.type} Rate</td><td>${transactionData.current_rate}</td></tr>
                                                     <tr><td>Quantity</td><td>${transactionData.tt_quantity} TTB</td></tr>
                                                 </tbody>
@@ -896,7 +896,7 @@
                                                     <thead><tr><th>TTB</th><th>Rate</th></tr></thead>
                                                     <tbody id="sellTableBody">
                                                         ${trades.length > 0 ? trades.map(trade => {
-                                                            let oldTradeAmount = (trade.current_rate * 13.7639 * (trade.tt_quantity - trade.close_quanntity)).toFixed(3);
+                                                            let oldTradeAmount = (trade.current_rate * 14.696 * (trade.tt_quantity - trade.close_quanntity)).toFixed(3);
                                                             return `
                                                                 <tr>
                                                                     <td>

@@ -170,12 +170,12 @@
 
                                         <td id="oldbalance-{{ $sl }}"
                                             style="text-align: center; display: none">
-                                            {{ number_format($transaction->current_rate * 13.7639 * ($transaction->tt_quantity - $transaction->close_quanntity), 3) }}
+                                            {{ number_format($transaction->current_rate * 14.696 * ($transaction->tt_quantity - $transaction->close_quanntity), 3) }}
                                         </td>
                                         <td style="text-align: center; display: none"><span
                                                 data-id="{{ $sl }}" data-type="{{ $transaction->type }}"
                                                 data-qty="{{ $transaction->tt_quantity - $transaction->close_quanntity }}"
-                                                data-startrate="{{ number_format($transaction->current_rate * 13.7639 * ($transaction->tt_quantity - $transaction->close_quanntity), 3) }}"
+                                                data-startrate="{{ number_format($transaction->current_rate * 14.696 * ($transaction->tt_quantity - $transaction->close_quanntity), 3) }}"
                                                 class="ratelist">{{ number_format($transaction->current_rate, 3) }}<span>
                                         </td>
 
@@ -396,7 +396,7 @@
                 let qty = $(this).attr("data-qty");
                 let dataId = $(this).attr("data-id");
                 let dataType = $(this).attr("data-type");
-                let perQtyPrice = qty * 13.7639;
+                let perQtyPrice = qty * 14.696;
 
                 // let runningValue = dataType == 'sell' ?   perQtyPrice * buyPrice : perQtyPrice * sellPrice;
                 let runningValue = perQtyPrice * price;
@@ -508,7 +508,7 @@
         var formData = {
             tt_quantity: document.getElementById('bid').value,
             current_rate: document.getElementById('gold_value').value,
-            total_amount_aed: (document.getElementById('gold_value').value * 3.745 * 3.67 * document.getElementById(
+            total_amount_aed: (document.getElementById('gold_value').value * 4 * 3.67 * document.getElementById(
                 'bid').value).toFixed(3),
             close_quanntity: 0,
             type: type,

@@ -457,7 +457,7 @@
                         let ttb_limit = Math.round(res.data.equity.toFixed(3) / (1000 / maxtt_per_K));
                         document.getElementById('availableTTB').textContent = `${ttb_limit.toFixed(3)}`;
                         
-                        let total_service_charge = res.data.sum_of_running_service_charge * 13.7639;
+                        let total_service_charge = res.data.sum_of_running_service_charge * 14.696;
                         document.getElementById('equity').textContent = `${(res.data.equity - total_service_charge).toFixed(3)}`;
                     },
                     error: function (xhr, status, error) {

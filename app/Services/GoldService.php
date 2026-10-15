@@ -68,7 +68,7 @@ class GoldService
         if ($current_rate == null) {
             $current_rate = $this->fetchGoldPrice();
         }
-        $perTTPrice = $qty * 13.7639;
+        $perTTPrice = $qty * 14.696;
 
         return $type == "buy" ?
             ((($current_rate - $start_rate) - $service_charge) * $perTTPrice)

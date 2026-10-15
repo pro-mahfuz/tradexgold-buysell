@@ -65,7 +65,7 @@
                                     <td><span class="badge badge-{{ $transaction->type === 'buy' ? 'info' : 'danger' }}">{{ strtoupper($transaction->type) }}</span></td>
                                     <td class="number">{{ number_format($openQuantity, 3) }}</td>
                                     <td class="number">{{ number_format($transaction->current_rate, 3) }}</td>
-                                    <td class="number">{{ number_format($transaction->current_rate * $openQuantity * 13.7639, 3) }}</td>
+                                    <td class="number">{{ number_format($transaction->current_rate * $openQuantity * 14.696, 3) }}</td>
                                 </tr>
                             @empty
                                 <tr><td colspan="8" class="text-center text-muted">No running trades match these filters.</td></tr>

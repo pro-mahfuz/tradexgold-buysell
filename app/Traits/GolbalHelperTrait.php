@@ -24,7 +24,7 @@ trait GolbalHelperTrait
         $type = $sumBuy > $sumSell ? 'buy' : 'sell';
 
         if ($totalQty != 0) {
-            $cutPosition = $equity / 13.7639 / $totalQty;
+            $cutPosition = $equity / 14.696 / $totalQty;
         } else {
             $cutPosition = 0;
         }

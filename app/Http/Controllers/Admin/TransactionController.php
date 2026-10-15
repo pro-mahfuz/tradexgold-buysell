@@ -130,7 +130,7 @@ class TransactionController extends Controller
             'sum_of_running_sell_ttb' => $buySell->sum_of_running_sell_ttb,
             'sum_of_running_buy_profit' => $buySell->sum_of_running_buy_profit,
             'sum_of_running_sell_profit' => $buySell->sum_of_running_sell_profit,
-            'sum_of_running_running_profit_loss' => (($buySell->sum_of_running_buy_profit + $buySell->sum_of_running_sell_profit) * 13.7639),
+            'sum_of_running_running_profit_loss' => (($buySell->sum_of_running_buy_profit + $buySell->sum_of_running_sell_profit) * 14.696),
             'current_profit_loss' => number_format(($tran->sum_of_sell_profit_loss + $tran->sum_of_buy_profit_loss), 3),
             'current_balance' => $this->transactionService->getCurrentBalance($request->id),
             'equity' => $this->transactionService->getEquity($request->id, $sellPrice),
@@ -157,7 +157,7 @@ class TransactionController extends Controller
         $marginLimit = 0;
 
         if ($marginActiveTtb != 0) {
-            $marginGap = ($marginEquity / abs($marginActiveTtb)) / 13.7639;
+            $marginGap = ($marginEquity / abs($marginActiveTtb)) / 14.696;
             $marginLimit = abs($marginActiveTtb > 0
                 ? $sellPrice - $marginGap
                 : $sellPrice + $marginGap);
@@ -368,7 +368,7 @@ class TransactionController extends Controller
             'sum_of_running_sell_ttb' => $buySell->sum_of_running_sell_ttb,
             'sum_of_running_buy_profit' => $buySell->sum_of_running_buy_profit,
             'sum_of_running_sell_profit' => $buySell->sum_of_running_sell_profit,
-            'sum_of_running_running_profit_loss' => (($buySell->sum_of_running_buy_profit + $buySell->sum_of_running_sell_profit) * 13.7639),
+            'sum_of_running_running_profit_loss' => (($buySell->sum_of_running_buy_profit + $buySell->sum_of_running_sell_profit) * 14.696),
             'current_profit_loss' => number_format(($tran->sum_of_sell_profit_loss + $tran->sum_of_buy_profit_loss), 3),
             'current_balance' => $this->transactionService->getCurrentBalance($request->id),
             'equity' => $this->transactionService->getEquity($request->id, $sellPrice),
@@ -395,7 +395,7 @@ class TransactionController extends Controller
         $marginLimit = 0;
 
         if ($marginActiveTtb != 0) {
-            $marginGap = ($marginEquity / abs($marginActiveTtb)) / 13.7639;
+            $marginGap = ($marginEquity / abs($marginActiveTtb)) / 14.696;
             $marginLimit = abs($marginActiveTtb > 0
                 ? $sellPrice - $marginGap
                 : $sellPrice + $marginGap);

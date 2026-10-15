@@ -181,7 +181,7 @@ class TransactionService
             ->get();
 
         $goldPrice = $this->getGoldPrice();
-        $perQtyPrice = 3.745 * 3.67 * $customer->conversion_rate;
+        $perQtyPrice = 4 * 3.67 * $customer->conversion_rate;
         $serviceCharge = $customer->service_charge;
 
         return $buySells->map(function ($buySell) use ($serviceCharge, $perQtyPrice, $goldPrice) {
@@ -448,7 +448,7 @@ class TransactionService
     {
        // $product = DB::table('products')->where('id', $data['product_id'])->first();
        // $data['current_rate'] = $this->goldservice->fetchGoldPrice($product->slug);
-        $amount = $data['tt_quantity'] * $data['current_rate'] * 3.745;
+        $amount = $data['tt_quantity'] * $data['current_rate'] * 4;
         $data['actual_amount'] = $amount;
         $data['total_amount_aed'] = $this->converToAed($amount);
         $data['cut_position'] = 0;
@@ -798,7 +798,7 @@ class TransactionService
         }
         // now copy all data for new buy sell updating the old one quantity
 
-        $amount = $data['split_quantity'] * $buySell->current_rate * 3.745;
+        $amount = $data['split_quantity'] * $buySell->current_rate * 4;
         $actual_amount = $amount;
         $totalAmountAed = $this->converToAed($amount);
 

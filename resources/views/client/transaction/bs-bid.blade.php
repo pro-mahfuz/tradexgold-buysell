@@ -166,7 +166,7 @@
                                 <?php $runningTTB = 0; ?>
                                 <?php $runningSellTTB = 0; ?>
                                 <?php $runningBuyTTB = 0; ?>
-                                <?php $converted = 3.74632 * 3.674 * $conversion_rate * 100; ?>
+                                <?php $converted = 4 * 3.674 * $conversion_rate * 100; ?>
                                 @foreach ($runningBuySell as $transaction)
                                     <tr>
                                         <th scope="row">{{ $sl++ }}</th>
@@ -237,7 +237,7 @@
     var runningBuyTTB = {{ $runningBuyTTB }};
     var serviceCharge = {{ $service_charge ?? 0 }};
     var conversion_rate = {{ $conversion_rate }};
-    var convertedRate = 3.74632 * 3.674 * conversion_rate * 100;
+    var convertedRate = 4 * 3.674 * conversion_rate * 100;
     var currency = '{{ $currency }}';
 
     document.getElementById('runningSellTTB').textContent = runningSellTTBValue;

@@ -83,7 +83,7 @@ class BuySellController extends Controller
                 $equity = $current_amount + $unrealisedProfitLoss;
 
                 if ($activeTtb != 0) {
-                    $marginGap = ($equity / abs($activeTtb)) / 13.7639;
+                    $marginGap = ($equity / abs($activeTtb)) / 14.696;
                     $marginLimit = abs($activeTtb > 0
                         ? $marketPrice - $marginGap
                         : $marketPrice + $marginGap);
@@ -646,7 +646,7 @@ class BuySellController extends Controller
         $splitQuantity = $request->split_quantity;
 
         $buysell = Buysell::find(id: $transactionId);
-        $total_amount_aed = $splitQuantity * $buysell->current_rate * 3.745 * 3.67;
+        $total_amount_aed = $splitQuantity * $buysell->current_rate * 4 * 3.67;
         
 
         $splitToSave = [
@@ -716,9 +716,9 @@ class BuySellController extends Controller
 
         if ($request->expectsJson()) {
             $outstandingQuantity = $buySell->tt_quantity - $buySell->close_quanntity;
-            $serviceCharge = $outstandingQuantity * ($buySell->service_charge * 13.7639);
+            $serviceCharge = $outstandingQuantity * ($buySell->service_charge * 14.696);
             $chargeDirection = $buySell->type === 'sell' ? -1 : 1;
-            $totalValue = ($buySell->current_rate * 13.7639 * $outstandingQuantity) + ($chargeDirection * ($serviceCharge + $buySell->swap_charge));
+            $totalValue = ($buySell->current_rate * 14.696 * $outstandingQuantity) + ($chargeDirection * ($serviceCharge + $buySell->swap_charge));
 
             return response()->json([
                 'success' => true,

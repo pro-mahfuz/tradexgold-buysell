@@ -199,15 +199,15 @@ class TransactionService
                 ? (float) $detail->starting_rate
                 : (float) ($openingTrade->current_rate ?? 0);
             $closingRate = is_numeric($detail->current_rate) ? (float) $detail->current_rate : 0;
-            $serviceCharge = $closedQuantity * ((float) ($openingTrade->service_charge ?? 0) * 13.7639);
+            $serviceCharge = $closedQuantity * ((float) ($openingTrade->service_charge ?? 0) * 14.696);
             $openingQuantity = (float) ($openingTrade->tt_quantity ?? $closedQuantity);
             $swapCharge = $openingQuantity > 0
                 ? ((float) ($openingTrade->swap_charge ?? 0) * ($closedQuantity / $openingQuantity))
                 : (float) ($openingTrade->swap_charge ?? 0);
             $chargeDirection = $detail->transaction_type === 'sell' ? -1 : 1;
-            $totalValue = ($openingRate * 13.7639 * $closedQuantity)
+            $totalValue = ($openingRate * 14.696 * $closedQuantity)
                 + ($chargeDirection * ($serviceCharge + $swapCharge));
-            $currentValue = $closingRate * 13.7639 * $closedQuantity;
+            $currentValue = $closingRate * 14.696 * $closedQuantity;
 
             return $detail->transaction_type === 'buy'
                 ? $currentValue - $totalValue
@@ -219,11 +219,11 @@ class TransactionService
     {
         return (float) collect($runningTrades)->sum(function ($trade) use ($marketPrice) {
             $quantity = max((float) $trade->tt_quantity - (float) $trade->close_quanntity, 0);
-            $currentValue = $marketPrice * 13.7639 * $quantity;
-            $serviceCharge = (float) ($trade->service_charge ?? 0) * 13.7639 * $quantity;
+            $currentValue = $marketPrice * 14.696 * $quantity;
+            $serviceCharge = (float) ($trade->service_charge ?? 0) * 14.696 * $quantity;
             $swapCharge = (float) ($trade->swap_charge ?? 0);
             $chargeDirection = $trade->type === 'sell' ? -1 : 1;
-            $openingValue = ((float) $trade->current_rate * 13.7639 * $quantity)
+            $openingValue = ((float) $trade->current_rate * 14.696 * $quantity)
                 + ($chargeDirection * ($serviceCharge + $swapCharge));
 
             return $trade->type === 'buy'
@@ -648,12 +648,12 @@ class TransactionService
             ? $buyPrice - $current_rate
             : $current_rate - $buyPrice;
 
-        $conversionFactor = 3.7463 * 3.674;
+        $conversionFactor = 4 * 3.674;
         $newBalanceAdjustment = $rateDifference * $conversionFactor * $qty;
 
         $equity = $currentBalance + $newBalanceAdjustment;
 
-        return $buyPrice - ($equity / (13.7639 * $qty));
+        return $buyPrice - ($equity / (14.696 * $qty));
     }
 
 
@@ -918,15 +918,15 @@ class TransactionService
             }
             $openingRate = is_numeric($transaction->starting_rate) ? (float) $transaction->starting_rate : (float) ($openingTrade->current_rate ?? 0);
             $closingRate = is_numeric($transaction->current_rate) ? (float) $transaction->current_rate : 0;
-            $serviceCharge = round($quantity * ((float) ($openingTrade->service_charge ?? 0) * 13.7639), 3);
+            $serviceCharge = round($quantity * ((float) ($openingTrade->service_charge ?? 0) * 14.696), 3);
             $openingQuantity = (float) ($openingTrade->tt_quantity ?? $quantity);
             $swapCharge = round($openingQuantity > 0
                 ? ((float) ($openingTrade->swap_charge ?? 0) * ($quantity / $openingQuantity))
                 : (float) ($openingTrade->swap_charge ?? 0), 3);
             $openingType = $openingTrade->type ?? $transaction->transaction_type;
             $chargeDirection = $openingType === 'sell' ? -1 : 1;
-            $totalValue = round(($openingRate * 13.7639 * $quantity) + ($chargeDirection * ($serviceCharge + $swapCharge)), 3);
-            $currentValue = round($closingRate * 13.7639 * $quantity, 3);
+            $totalValue = round(($openingRate * 14.696 * $quantity) + ($chargeDirection * ($serviceCharge + $swapCharge)), 3);
+            $currentValue = round($closingRate * 14.696 * $quantity, 3);
 
             $transaction->setAttribute('linked_buy', $openingTrade);
             $transaction->setAttribute('display_quantity', $quantity);

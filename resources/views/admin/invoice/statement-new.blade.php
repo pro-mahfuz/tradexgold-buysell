@@ -82,10 +82,10 @@
             $transaction->service_charge = is_numeric($transaction->service_charge) ? $transaction->service_charge : 0;
             $swap_charge = is_numeric($transaction->swap_charge ?? null) ? $transaction->swap_charge : 0;
         
-            $current_value = $market_price * 13.7639 * $ttb_qty;
-            $service_cost = $transaction->service_charge * 13.7639 * $ttb_qty;
+            $current_value = $market_price * 14.696 * $ttb_qty;
+            $service_cost = $transaction->service_charge * 14.696 * $ttb_qty;
             $chargeDirection = $transaction->type === 'sell' ? -1 : 1;
-            $total_value = ($transaction->current_rate * 13.7639 * $ttb_qty) + ($chargeDirection * ($service_cost + $swap_charge));
+            $total_value = ($transaction->current_rate * 14.696 * $ttb_qty) + ($chargeDirection * ($service_cost + $swap_charge));
         
             if ($transaction->type == 'buy') {
                 $raw_profit = $current_value - $total_value;
@@ -200,15 +200,15 @@
                                 ? (float) $detail->starting_rate
                                 : (float) ($openingTrade->current_rate ?? 0);
                             $closingRate = is_numeric($detail->current_rate) ? (float) $detail->current_rate : 0;
-                            $serviceCharge = $closedQuantity * ((float) ($openingTrade->service_charge ?? 0) * 13.7639);
+                            $serviceCharge = $closedQuantity * ((float) ($openingTrade->service_charge ?? 0) * 14.696);
                             $openingQuantity = (float) ($openingTrade->tt_quantity ?? $closedQuantity);
                             $swapCharge = $openingQuantity > 0
                                 ? ((float) ($openingTrade->swap_charge ?? 0) * ($closedQuantity / $openingQuantity))
                                 : (float) ($openingTrade->swap_charge ?? 0);
                             $chargeDirection = $detail->transaction_type === 'sell' ? -1 : 1;
-                            $totalValue = ($openingRate * 13.7639 * $closedQuantity)
+                            $totalValue = ($openingRate * 14.696 * $closedQuantity)
                                 + ($chargeDirection * ($serviceCharge + $swapCharge));
-                            $currentValue = $closingRate * 13.7639 * $closedQuantity;
+                            $currentValue = $closingRate * 14.696 * $closedQuantity;
 
                             return $detail->transaction_type === 'buy'
                                 ? $currentValue - $totalValue
@@ -226,7 +226,7 @@
                         <div class="metric"><span class="metric__label">Booking Profit / Loss</span><span class="metric__value">AED {{ number_format($realisedProfitLoss, 3) }}</span></div>
                         <div class="metric"><span class="metric__label">Cash balance</span><span class="metric__value">AED {{ number_format($cashBalanceAfterProfitLoss, 3) }}</span></div>
                         <div class="metric"><span class="metric__label">Net gold position</span><span class="metric__value">{{ $activeTtb }} TTB {{ $netTtb < 0 ? 'Sell' : ($netTtb > 0 ? 'Buy' : '') }}</span></div>
-                        <div class="metric"><span class="metric__label">Position value</span><span class="metric__value">AED {{ $value != 0 ? number_format($market_price * abs($value) * 13.7639, 3) : '0.00' }}</span></div>
+                        <div class="metric"><span class="metric__label">Position value</span><span class="metric__value">AED {{ $value != 0 ? number_format($market_price * abs($value) * 14.696, 3) : '0.00' }}</span></div>
                         <div class="metric"><span class="metric__label">Equity</span><span class="metric__value">AED {{ number_format($netEquity, 3) }}</span></div>
                         <div class="metric"><span class="metric__label">Withdrawable</span><span class="metric__value">AED {{ number_format($withdrawable, 3) }}</span></div>
                     </div>
@@ -275,20 +275,20 @@
                                         <td>{{ $transaction->type }}</td>
                                         <td>{{ $transaction->tt_quantity - $transaction->close_quanntity }}</td>
                                         <td id="current_rate-{{ $sl }}">{{ number_format($transaction->current_rate, 3) }}</td>
-                                        <td style="text-align: center;">{{ number_format(($transaction->tt_quantity - $transaction->close_quanntity) * ($transaction->service_charge * 13.7639), 3) }}</td>
+                                        <td style="text-align: center;">{{ number_format(($transaction->tt_quantity - $transaction->close_quanntity) * ($transaction->service_charge * 14.696), 3) }}</td>
 
                                         <td style="text-align: center;">{{ number_format($transaction->swap_charge ?? 0, 3) }}</td>
 
                                         <td id="oldbalance-{{ $sl }}" style="text-align: center;">
                                             {{ number_format(
-                                                ($transaction->current_rate * 13.7639 * ($transaction->tt_quantity - $transaction->close_quanntity))
-                                                + (($transaction->type === 'sell' ? -1 : 1) * ((($transaction->tt_quantity - $transaction->close_quanntity) * ($transaction->service_charge * 13.7639)) + ($transaction->swap_charge ?? 0))),
+                                                ($transaction->current_rate * 14.696 * ($transaction->tt_quantity - $transaction->close_quanntity))
+                                                + (($transaction->type === 'sell' ? -1 : 1) * ((($transaction->tt_quantity - $transaction->close_quanntity) * ($transaction->service_charge * 14.696)) + ($transaction->swap_charge ?? 0))),
                                                 3
                                             ) }}
                                         </td>
 
                                         
-                                        <td style="text-align: center;">{{ number_format($market_price * 13.7639 * ($transaction->tt_quantity - $transaction->close_quanntity), 3) }}
+                                        <td style="text-align: center;">{{ number_format($market_price * 14.696 * ($transaction->tt_quantity - $transaction->close_quanntity), 3) }}
                                         </td>
                                         
                                         @php
@@ -301,10 +301,10 @@
                                             $transaction->service_charge = is_numeric($transaction->service_charge) ? $transaction->service_charge : 0;
                                             $swap_charge = is_numeric($transaction->swap_charge ?? null) ? $transaction->swap_charge : 0;
 
-                                            $current_value = $market_price * 13.7639 * $ttb_qty;
-                                            $service_cost = $transaction->service_charge * 13.7639 * $ttb_qty;
+                                            $current_value = $market_price * 14.696 * $ttb_qty;
+                                            $service_cost = $transaction->service_charge * 14.696 * $ttb_qty;
                                             $chargeDirection = $transaction->type === 'sell' ? -1 : 1;
-                                            $total_value = ($transaction->current_rate * 13.7639 * $ttb_qty) + ($chargeDirection * ($service_cost + $swap_charge));
+                                            $total_value = ($transaction->current_rate * 14.696 * $ttb_qty) + ($chargeDirection * ($service_cost + $swap_charge));
 
                                             if ($transaction->type == 'buy') {
                                                 $raw_profit = $current_value - $total_value;
@@ -370,14 +370,14 @@
                                             $openingTrade = $detail->linked_buy;
                                             $openingRate = is_numeric($detail->starting_rate) ? (float) $detail->starting_rate : (float) ($openingTrade->current_rate ?? 0);
                                             $closingRate = is_numeric($detail->current_rate) ? (float) $detail->current_rate : 0;
-                                            $serviceCharge = $closedQuantity * ((float) ($openingTrade->service_charge ?? 0) * 13.7639);
+                                            $serviceCharge = $closedQuantity * ((float) ($openingTrade->service_charge ?? 0) * 14.696);
                                             $openingQuantity = (float) ($openingTrade->tt_quantity ?? $closedQuantity);
                                             $swapCharge = $openingQuantity > 0
                                                 ? ((float) ($openingTrade->swap_charge ?? 0) * ($closedQuantity / $openingQuantity))
                                                 : (float) ($openingTrade->swap_charge ?? 0);
                                             $chargeDirection = $detail->transaction_type === 'sell' ? -1 : 1;
-                                            $totalValue = ($openingRate * 13.7639 * $closedQuantity) + ($chargeDirection * ($serviceCharge + $swapCharge));
-                                            $currentValue = $closingRate * 13.7639 * $closedQuantity;
+                                            $totalValue = ($openingRate * 14.696 * $closedQuantity) + ($chargeDirection * ($serviceCharge + $swapCharge));
+                                            $currentValue = $closingRate * 14.696 * $closedQuantity;
                                             $closedProfitLoss = $detail->transaction_type === 'buy'
                                                 ? $currentValue - $totalValue
                                                 : $totalValue - $currentValue;

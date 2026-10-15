@@ -92,15 +92,15 @@
                                     <td>{{ $deposit }}</td>
                                     <td>{{ $withdraw }}</td>
                                     <td>{{ number_format($profit - $loss, 3) }}</td>
-                                    <td>{{ $value * 3.746 }}</td>
+                                    <td>{{ $value * 4 }}</td>
                                     <td>{{ $value }}</td>
-                                    <td> {{ number_format(($market_price * 13.7639) / 3.674, 3) }} </td>
-                                    <td> {{ number_format((($market_price * 13.7639) / 3.674) * $value, 3) }} </td>
+                                    <td> {{ number_format(($market_price * 14.696) / 3.674, 3) }} </td>
+                                    <td> {{ number_format((($market_price * 14.696) / 3.674) * $value, 3) }} </td>
 
                                     <td>{{ is_numeric($equity) ? number_format($equity / 3.6715, 3) : '0' }}</td>
                                     <td>{{ number_format($equity, 3) }}</td>
                                     <td>{{ number_format($profiLoss ?? 0 + $totalProfitLoss, 3) }}</td>
-                                    <td>{{ number_format(($profiLoss ?? 0 + $totalProfitLoss) - 36.32 * 13.7639 * $value, 3) }}
+                                    <td>{{ number_format(($profiLoss ?? 0 + $totalProfitLoss) - 36.32 * 14.696 * $value, 3) }}
                                     </td>
                                 </tr>
                             </tbody>
@@ -165,11 +165,11 @@
                                     <td style="text-align: center">{{ $positionArray['type'] }}</td>
 
                                     <td style="text-align: center">
-                                        {{ (($positionArray['tt_quantity'] ?? 0) * 3.746) / 10 }}
+                                        {{ (($positionArray['tt_quantity'] ?? 0) * 4) / 10 }}
                                     </td>
                                     <td style="text-align: center">{{ $positionArray['current_rate'] }}</td>
 
-                                    <td style="text-align: center">{{ ($positionArray['tt_quantity'] ?? 0) * 3.746 }}</td>
+                                    <td style="text-align: center">{{ ($positionArray['tt_quantity'] ?? 0) * 4 }}</td>
                                     <td style="text-align: right">{{ number_format($positionArray['profit_loss'], 3) }}
                                     </td>
                                 </tr>
@@ -178,7 +178,7 @@
                             <tr class="table-active">
                                 <td colspan="7"><strong>Sub Total Profit/Loss</strong></td>
                                 <td colspan="1" style="text-align: center">
-                                    <strong>{{ number_format(($buyTTB - $sellTTB) * 3.746, 3) }}</strong>
+                                    <strong>{{ number_format(($buyTTB - $sellTTB) * 4, 3) }}</strong>
                                 </td>
                                 <td colspan="1" style="text-align: right">
                                     <strong>{{ $totalProfitLoss }}</strong>
