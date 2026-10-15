@@ -11,7 +11,7 @@ class Customer extends BaseModel
     use HasFactory;
 
     // Define the table associated with the model
-    protected $table = 'customers';
+    protected $table = 'accounts';
 
     // The primary key for the model
     protected $primaryKey = 'id';

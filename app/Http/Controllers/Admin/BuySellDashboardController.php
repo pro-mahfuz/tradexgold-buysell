@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Buysell;
 use App\Models\Customer;
 use App\Models\Pending;
-use App\Models\Supplier;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use DB;

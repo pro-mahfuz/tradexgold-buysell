@@ -110,8 +110,8 @@ class CustomerController extends Controller
             'service_charge' => ['required', 'numeric', 'decimal:0,3'],
         ];
         if (!$isEdit) {
-          //  $data['phone'] = ['required', 'string', 'max:255', 'unique:customers,phone'];
-            $data['customer_code'] = ['required', 'string', 'max:255', 'unique:customers,customer_code'];
+          //  $data['phone'] = ['required', 'string', 'max:255', 'unique:accounts,phone'];
+            $data['customer_code'] = ['required', 'string', 'max:255', 'unique:accounts,customer_code'];
         }
         return $data;
     }

@@ -9,7 +9,7 @@ class BaseService
 
     public function __construct()
     {
-        $this->customer = DB::table('customers')->where('email', auth('api')->user()->email)->first();
+        $this->customer = DB::table('accounts')->where('email', auth('api')->user()->email)->first();
     }
 
 }

@@ -63,7 +63,7 @@ class TransactionService
         $type = is_string($type) ? [$type] : $type;
 
         return DB::table('transaction')
-            ->leftJoin('customers', 'transaction.customer_id', '=', 'customers.id')
+            ->leftJoin('accounts', 'transaction.customer_id', '=', 'accounts.id')
             ->leftJoin('buysells', 'transaction.reference_row', '=', 'buysells.id')
             ->where('transaction.business_id', $businessId)
             ->where('transaction.customer_id', $this->customer()->id)
@@ -71,7 +71,7 @@ class TransactionService
             ->orderBy('transaction.id', 'desc')
             ->select(
                 'transaction.*',
-                'customers.name',
+                'accounts.name',
                 'buysells.created_at as buy_sell_date',
                 'buysells.current_rate as buy_sell_rate',
                 'buysells.type'
@@ -131,7 +131,7 @@ class TransactionService
             ->get();
 
         return $trans->map(function ($transaction) {
-            $customer = DB::table('customers')->where('id', $transaction->customer_id)->first();
+            $customer = DB::table('accounts')->where('id', $transaction->customer_id)->first();
             $transaction->linked_buy = DB::table('buysells')->where('id', $transaction->reference_row)->first();
             $transaction->customer = $customer;
             return $transaction;
@@ -227,7 +227,7 @@ class TransactionService
         $businessId = $businessId ?? session('businessId');
 
         // Fetch customer details
-        $customer = DB::table('customers')->where('id', $customerId)->first();
+        $customer = DB::table('accounts')->where('id', $customerId)->first();
         if (!$customer) {
             throw new \Exception('Customer not found.');
         }
@@ -292,7 +292,7 @@ class TransactionService
     public function proccessReferral($customerId, $tnxID, $qty = 1, $businessId)
     {
         $referrers = $this->getAllReferrers($customerId);
-        $customer = DB::table('customers')->where('id', $customerId)->first();
+        $customer = DB::table('accounts')->where('id', $customerId)->first();
 
 
         if (isset($customer->referral_code)) {
@@ -331,7 +331,7 @@ class TransactionService
 
     public function getAllReferrers($customerId, $referrers = [])
     {
-        $customer = DB::table('customers')->where('id', $customerId)->first();
+        $customer = DB::table('accounts')->where('id', $customerId)->first();
 
         if ($customer && $customer->referrer) {
             $referrerCount = count($referrers) + 1;
@@ -456,7 +456,7 @@ class TransactionService
         try {
             DB::table('buysells')->insert($data);
 
-            $customer = DB::table('customers')->where('id', $data['customer_id'])->first();
+            $customer = DB::table('accounts')->where('id', $data['customer_id'])->first();
             $runningBuySell = $this->getBuySell(isRunning: true, id: $data['customer_id']);
 
             list($openPositionProfitOrLoss, $sum, $qtySum, $running) = $this->getRunningWithTqtyOpenPostion($runningBuySell, $customer->service_charge);

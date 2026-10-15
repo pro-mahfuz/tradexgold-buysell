@@ -75,7 +75,7 @@ class User extends Authenticatable
 
     public function customer()
     {
-        return DB::table('customers')->where('email', $this->email)->first() ?? null;
+        return DB::table('accounts')->where('email', $this->email)->first() ?? null;
     }
     
 

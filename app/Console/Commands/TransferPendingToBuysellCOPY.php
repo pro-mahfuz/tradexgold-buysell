@@ -35,7 +35,7 @@ class TransferPendingToBuysellCOPY extends Command
                 $this->info('Processing record: ' . $record->id);
                 $goldPrice = $this->goldService->fetchGoldPrice();
                 $currentAmount = $this->transactionService->getEquity($record->customer_id, $goldPrice);
-                $cutomerName = DB::table(table: 'customers')->where('id', $record->customer_id)->first();
+                $cutomerName = DB::table(table: 'accounts')->where('id', $record->customer_id)->first();
                 $this->info('Gold price: ' . $goldPrice);
 
                 if ($cutomerName) {

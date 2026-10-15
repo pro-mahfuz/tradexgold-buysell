@@ -11,18 +11,18 @@ trait ApiTrait
     // public function customerByID($id = null)
     // {
     //     $id = $id ?? auth('api')->user()->id;
-    //     return DB::table('customers')->where('id', $id)->first() ?? null;
+    //     return DB::table('accounts')->where('id', $id)->first() ?? null;
     // }
     public function customer($onlyCheck = false)
     {
         if ($onlyCheck) {
-            return DB::table('customers')->where('email', auth('api')->user()->email)->first() ?? null;
+            return DB::table('accounts')->where('email', auth('api')->user()->email)->first() ?? null;
         }
 
-        $customers = DB::table('customers')
-            ->select('customers.*', 'currencies.code', 'currencies.conversion_rate')
-            ->leftJoin('currencies', 'currencies.id', '=', 'customers.currency_id') // Adjust join condition
-            ->where('customers.email', auth('api')->user()->email)
+        $customers = DB::table('accounts')
+            ->select('accounts.*', 'currencies.code', 'currencies.conversion_rate')
+            ->leftJoin('currencies', 'currencies.id', '=', 'accounts.currency_id') // Adjust join condition
+            ->where('accounts.email', auth('api')->user()->email)
             ->first() ?? null;
 
         if ($customers == null) {

@@ -438,7 +438,7 @@ class TransactionService
         $runningBuySell = $this->getBuySell(isRunning: true, id: $customerId);
         $currentBalance = $this->getCurrentBalance($customerId);
         
-        //$serviceCharge = DB::table('customers')->where('id', $customerId)->first()->service_charge ?? 0;
+        //$serviceCharge = DB::table('accounts')->where('id', $customerId)->first()->service_charge ?? 0;
         $serviceCharge = 0;
         
         list($openPositionProfitOrLoss, $sum, $qtySum) = $this->getOpening($runningBuySell, $buyPrice, $serviceCharge);

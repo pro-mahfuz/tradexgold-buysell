@@ -27,6 +27,6 @@ class Deposit extends BaseModel
         'updated_at',
     ];
     public function supplier() {
-        return $this->belongsTo(Supplier::class,'supplier_id');
+        return $this->belongsTo(Customer::class, 'supplier_id');
     }
 }

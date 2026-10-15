@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ReferralDashboardController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\SupplierDashBoardController;
+use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\Auth\RegistrationController;
@@ -242,6 +243,14 @@ Route::middleware(['auth:web', 'otpcheckMiddleware'])->prefix('admin')->name('ad
 
 
     ////////////////////////////////////// ----------Supplier ---------------------------------------------//////////////////
+
+    Route::prefix('supplier')->name('supplier.')->group(function () {
+        Route::get('/', [SupplierController::class, 'index'])->name('index');
+        Route::get('/create', [SupplierController::class, 'create'])->name('create');
+        Route::post('/', [SupplierController::class, 'store'])->name('store');
+        Route::get('/{supplier}/edit', [SupplierController::class, 'edit'])->name('edit');
+        Route::put('/{supplier}', [SupplierController::class, 'update'])->name('update');
+    });
 
 
 

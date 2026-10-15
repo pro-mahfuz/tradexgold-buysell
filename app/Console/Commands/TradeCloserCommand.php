@@ -48,12 +48,12 @@ class TradeCloserCommand extends Command
         // Get all open trades with necessary fields and eager load customer data
         $trades = DB::table('buysells')
             ->where('is_running', 1)
-            ->join('customers', 'buysells.customer_id', '=', 'customers.id')
+            ->join('accounts', 'buysells.customer_id', '=', 'accounts.id')
             ->where(function ($query) {
                 $query->where('take_profit', '!=', 0)
                     ->orWhere('stop_loss', '!=', 0);
             })
-            ->select('buysells.*', 'customers.service_charge', 'buysells.id as trade_id')
+            ->select('buysells.*', 'accounts.service_charge', 'buysells.id as trade_id')
             ->get();
 
 

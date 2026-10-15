@@ -43,7 +43,7 @@ class TransferPendingToBuysell extends Command
 
             foreach ($pendingRecords as $record) {
                 $this->info('Processing record Id: ' . $record->id);
-                $customer = DB::table(table: 'customers')->where('id', $record->customer_id)->first();
+                $customer = DB::table(table: 'accounts')->where('id', $record->customer_id)->first();
                 if ($customer) {
 
 

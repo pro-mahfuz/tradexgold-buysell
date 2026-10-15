@@ -10,7 +10,7 @@ trait UserTrait
             'address' => ['required', 'string', 'max:255'],
             'id_proof' => ['required', 'string', 'max:255'],
             'id_number' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:255', 'unique:customers,phone'],
+            'phone' => ['required', 'string', 'max:255', 'unique:accounts,phone'],
             'currency' => ['required'],
         ];
 

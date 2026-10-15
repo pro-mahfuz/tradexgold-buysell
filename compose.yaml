@@ -5,6 +5,7 @@ services:
     env_file:
       - .env
     ports:
+      - "8000:80"
       - "9010:80"
     environment:
       APP_ENV: local
