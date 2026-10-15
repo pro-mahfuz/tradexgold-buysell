@@ -265,7 +265,7 @@ class BuySellController extends Controller
 
 
         $validated = $request->validate([
-            'customer_id' => 'required|exists:accounts,id',
+            'customer_id' => 'required|exists:customers,id',
             'tt_quantity' => 'required|numeric|gt:0',
             'current_rate' => 'required|numeric|gt:0',
             'type' => 'required|in:buy,sell',
@@ -533,7 +533,7 @@ class BuySellController extends Controller
     public function storePending(Request $request)
     {
         $request->validate([
-            'customer_id' => 'required|exists:accounts,id',
+            'customer_id' => 'required|exists:customers,id',
             'tt' => 'required|numeric|gt:0',
             'type' => 'required|in:buy,sell',
             'limit_' => 'nullable|numeric',
