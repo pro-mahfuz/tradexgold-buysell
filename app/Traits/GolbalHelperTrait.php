@@ -38,7 +38,7 @@ trait GolbalHelperTrait
         $cut = abs(number_format((float)$cutPositionCalulate, 3, '.', ''));
 
  
-         DB::table('accounts')->where('id', $customerId)
+        Customer::whereKey($customerId)
             ->update(['cutposition' => $cut]);
 
     }
